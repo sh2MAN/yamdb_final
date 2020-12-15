@@ -26,7 +26,7 @@ jobs:
         run: flake8 .
 
       - name: Test with pytest
-        run: pytest tests.py
+        run: pytest
 
   build_image_into_docker_hub:
     name: Push Docker Hub Image
