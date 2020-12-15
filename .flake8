@@ -2,6 +2,6 @@
 per-file-ignores =
     # line too long
     api_yamdb/settings.py: E501,
-    api/migrations/*.py: E501,
+    api/migrations/*.py: E501, F401,
     users/migrations/*.py: E501,
-    tests/*.py: E501,
+    tests/*.py: E501, F401, F403, F405
