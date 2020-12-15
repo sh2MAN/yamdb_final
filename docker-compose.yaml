@@ -1,0 +1,33 @@
+version: "3.8"
+
+volumes:
+  postgres_data:
+  static_data:
+
+services:
+  db:
+    image: postgres:12.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  web:
+    image: sh2man/yamdb:latest
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - static_data:/app/static/
+    env_file:
+      - ./.env
+
+  nginx:
+    build: ./nginx
+    restart: always
+    depends_on:
+      - web
+    ports:
+      - 80:80
+    volumes:
+      - static_data:/app/static/

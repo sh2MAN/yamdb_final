@@ -1,6 +1,5 @@
-# YaMDb API
+# YaMDb API [![YaMDb Status](https://github.com/sh2man/yamdb_final/workflows/YaMDb/badge.svg)](https://shields.io/)
 
-[![Generic badge](https://github.com/sh2man/yamdb_final/workflows/YaMDb/badge.svg)](https://shields.io/)
 API YaMDb - это интерфейс, который позволяет пользователям получать и публиковать отзывы на произведения. 
 Произведения делятся на категории: «Книги», «Фильмы», «Музыка».
 
@@ -75,6 +74,6 @@ sudo docker-compose exec web python manage.py loaddata fixtures.json
 * **Maria Mozgunova** - [MariaMozgunova](https://github.com/MariaMozgunova)
 * **Pavel Davidov** - [DavydovPavel](https://github.com/DavydovPavel)
 
-## License
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE.md)
+## License [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE.md)
+
 This project is licensed under the BSD 3 - see the [LICENSE.md](LICENSE.md) file for details
