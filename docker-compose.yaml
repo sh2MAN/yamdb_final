@@ -9,6 +9,12 @@ services:
     image: postgres:12.4
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - DB_HOST
+      - DB_PORT
     env_file:
       - ./.env
 
@@ -19,6 +25,12 @@ services:
       - db
     volumes:
       - static_data:/app/static/
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - DB_HOST
+      - DB_PORT
     env_file:
       - ./.env
 
