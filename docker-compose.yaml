@@ -15,8 +15,6 @@ services:
       - POSTGRES_DB
       - DB_HOST
       - DB_PORT
-    env_file:
-      - ./.env
 
   web:
     image: sh2man/yamdb:latest
@@ -31,8 +29,6 @@ services:
       - POSTGRES_DB
       - DB_HOST
       - DB_PORT
-    env_file:
-      - ./.env
 
   nginx:
     build: ./nginx
