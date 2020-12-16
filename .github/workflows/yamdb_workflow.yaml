@@ -87,7 +87,7 @@ jobs:
                 sudo docker stop $(sudo docker ps -a -q)
             fi
             cd docker-deploy/
-            sudo docker-compose up -d
+            sudo docker-compose -f docker-compose.yaml up -d
             sudo docker-compose exec -T web python manage.py collectstatic --no-input
 
   send_message:

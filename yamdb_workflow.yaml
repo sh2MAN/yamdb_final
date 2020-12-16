@@ -82,12 +82,12 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           envs: POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, DB_HOST, DB_PORT
           script: |
+            cd yamdb_deploy/
             sudo docker pull sh2man/yamdb:latest
             if [ -n "$(sudo docker ps -a -q)" ]; then
                 sudo docker stop $(sudo docker ps -a -q)
             fi
-            cd docker-deploy/
-            sudo docker-compose up -d
+            sudo docker-compose -f docker-compose.yaml up -d
             sudo docker-compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
