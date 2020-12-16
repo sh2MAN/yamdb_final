@@ -2,7 +2,7 @@ version: "3.8"
 
 volumes:
   yamdb_deploy_postgres_data:
-  static_data:
+  yamdb_deploy_static_data:
 
 services:
   db:
