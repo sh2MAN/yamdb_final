@@ -5,4 +5,8 @@ venv
 *.sqlite3
 Dockerfile
 docker-compose.yaml
+yamdb_workflow.yaml
+.github
+pytest*
+tests
 README.*
