@@ -55,6 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_image_into_docker_hub
     steps:
+      - uses: actions/checkout@master
       - name: Copy file into remote server with scp
         uses: appleboy/scp-action@master
         with:
@@ -63,8 +64,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           rm: true
-          source: "nginx/*,docker-compose.yaml"
-          target: "~/docker-deploy"
+          source: "./nginx/*,./docker-compose.yaml"
+          target: "./docker-deploy"
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
