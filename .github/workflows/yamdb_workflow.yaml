@@ -86,8 +86,9 @@ jobs:
             if [ -n "$(sudo docker ps -a -q)" ]; then
                 sudo docker stop $(sudo docker ps -a -q)
             fi
-            sudo docker-compose -f "docker-deploy/docker-compose.yaml" up -d
-            sudo docker-compose -f "docker-deploy/docker-compose.yaml" exec -T web python manage.py collectstatic --no-input
+            cd docker-deploy/
+            sudo docker-compose up -d
+            sudo docker-compose exec -T web python manage.py collectstatic --no-input
 
   send_message:
     runs-on: ubuntu-latest
