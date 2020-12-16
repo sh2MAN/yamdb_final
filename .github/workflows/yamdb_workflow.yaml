@@ -65,7 +65,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           rm: true
           source: "./nginx/*,./docker-compose.yaml"
-          target: "./docker-deploy"
+          target: "./yamdb_deploy"
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
