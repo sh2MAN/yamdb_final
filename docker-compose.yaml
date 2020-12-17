@@ -1,20 +1,16 @@
 version: "3.8"
 
 volumes:
-  yamdb_deploy_postgres_data:
-  yamdb_deploy_static_data:
+  postgres_data:
+  static_data:
 
 services:
   db:
     image: postgres:12.4
     volumes:
-      - yamdb_deploy_postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
-      - DB_HOST
-      - DB_PORT
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
 
   web:
     image: sh2man/yamdb:latest
@@ -22,13 +18,9 @@ services:
     depends_on:
       - db
     volumes:
-      - yamdb_deploy_static_data:/app/static/
-    environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
-      - DB_HOST
-      - DB_PORT
+      - static_data:/app/static/
+    env_file:
+      - ./.env
 
   nginx:
     build: ./nginx
@@ -38,4 +30,4 @@ services:
     ports:
       - 80:80
     volumes:
-      - yamdb_deploy_static_data:/app/static/:ro
+      - static_data:/app/static/:ro
