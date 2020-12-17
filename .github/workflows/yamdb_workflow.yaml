@@ -77,8 +77,10 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+          envs: ENV_FILE
           script: |
             cd yamdb_deploy/
+            echo $ENV_FILE
             echo $ENV_FILE | base64 --decode > .env
             sudo docker pull sh2man/yamdb:latest
             if [ -n "$(sudo docker ps -a -q)" ]; then
