@@ -56,6 +56,7 @@ jobs:
     needs: build_image_into_docker_hub
     steps:
       - uses: actions/checkout@master
+
       - name: Copy file into remote server with scp
         uses: appleboy/scp-action@master
         with:
@@ -70,24 +71,21 @@ jobs:
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         env:
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_PORT: ${{ secrets.DB_PORT }}
+          ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          envs: POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, DB_HOST, DB_PORT
+          envs: ENV_FILE
           script: |
             cd yamdb_deploy/
+            echo $ENV_FILE > .env
             sudo docker pull sh2man/yamdb:latest
             if [ -n "$(sudo docker ps -a -q)" ]; then
                 sudo docker stop $(sudo docker ps -a -q)
             fi
-            sudo docker-compose -f docker-compose.yaml up -d
+            sudo docker-compose up -d
             sudo docker-compose exec -T web python manage.py collectstatic --no-input
 
   send_message:

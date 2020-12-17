@@ -72,7 +72,6 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
-          ENV_FILE_T: ${{ secrets.PROD_ENV_FILE }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
@@ -82,7 +81,6 @@ jobs:
           script: |
             cd yamdb_deploy/
             echo $ENV_FILE > .env
-            echo $ENV_FILE_T > .env_t
             sudo docker pull sh2man/yamdb:latest
             if [ -n "$(sudo docker ps -a -q)" ]; then
                 sudo docker stop $(sudo docker ps -a -q)
