@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: set environment variables
+        uses: allenevans/set-env@v2.0.0
+        with:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
       - name: SetUp Python
         uses: actions/setup-python@v2
         with:
@@ -80,7 +85,7 @@ jobs:
           envs: ENV_FILE
           script: |
             cd yamdb_deploy/
-            echo $ENV_FILE > .env
+            echo $ENV_FILE |tr ' ' '\n' > .env
             sudo docker pull sh2man/yamdb:latest
             if [ -n "$(sudo docker ps -a -q)" ]; then
                 sudo docker stop $(sudo docker ps -a -q)
