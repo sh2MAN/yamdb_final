@@ -24,7 +24,9 @@ DB_NAME=postgres # имя базы данных
 POSTGRES_USER=postgres # логин для подключения к базе данных
 POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
 DB_HOST=db # название сервиса (контейнер в котором будет развернута БД)
-DB_PORT=5432 # порт для подключения к БД 
+DB_PORT=5432 # порт для подключения к БД
+SECRET_KEY=... # секретный ключ
+DEBUG = True # данную опцию следует добавить для отладки
 ```
 - Запустите docker-compose `sudo docker-compose up -d` 
 - Примените миграции `sudo docker-compose exec web python manage.py migrate`
@@ -77,3 +79,7 @@ sudo docker-compose exec web python manage.py loaddata fixtures.json
 ## License [![BSDv3 license](https://img.shields.io/badge/License-BSDv3-blue.svg)](LICENSE.md)
 
 This project is licensed under the BSD 3 - see the [LICENSE.md](LICENSE.md) file for details
+
+## Ссылки
+
+Проект доступен по следующей ссылке <http://ya-backend.ml/>

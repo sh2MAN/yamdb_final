@@ -3,6 +3,7 @@ version: "3.8"
 volumes:
   postgres_data:
   static_data:
+  media_data:
 
 services:
   db:
@@ -19,15 +20,18 @@ services:
       - db
     volumes:
       - static_data:/app/static/
+      - media_data:/app/media/
     env_file:
       - ./.env
 
   nginx:
-    build: ./nginx
+    image: nginx:1.19
     restart: always
     depends_on:
       - web
     ports:
       - 80:80
     volumes:
+      - ./nginx:/etc/nginx/conf.d
       - static_data:/app/static/:ro
+      - media_data:/app/media/:ro
