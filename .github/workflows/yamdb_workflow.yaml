@@ -21,10 +21,10 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
           envs: SECRET_KEY
-          run: |
-            python -m pip install --upgrade pip
-            pip install flake8 pytest
-            pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          pip install -r requirements.txt
 
       - name: Lint with flake8
         run: flake8 .
